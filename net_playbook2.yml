@@ -22,12 +22,4 @@
       ansible.builtin.command: ip link add name "{{ item.get('hosts') }}" type bridge
       when: "{{ item.get('bridge') }}" 
       loop: "{{ Network.subnets | from_yaml }}"
-      become: yes
 
-    - name: Capture brctl output
-      ansible.builtin.command: brctl show
-      register: command_output
-
-    - name: Show brctl output
-      ansible.builtin.debug:
-        var: command_output.stdout
