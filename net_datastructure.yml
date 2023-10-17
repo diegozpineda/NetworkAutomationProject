@@ -1,0 +1,100 @@
+---
+authors: "Diego Pineda and Ryan McNair"
+Network:
+  name: "Capstone Project Network"
+  last_updated: "2023-10-16"
+  subnets:
+    - name: "Alpha"
+      subnet_ip: "10.0.1.0"
+      subnet_mask: "255.255.255.0"
+      gw: "10.0.1.1"
+      dhcp_range: "10.0.1.10,10.0.1.254"
+      bridge: true
+      hosts: "alpha-host"
+
+    - name: "Alpha-core"
+      subnet_ip: "10.1.10.4"
+      subnet_mask: "255.255.255.252"
+      gw: "10.1.10.5"
+      dhcp_range: null
+      bridge: false
+      hosts: null
+
+    - name: "Beta"
+      subnet_ip: "10.0.2.0"
+      subnet_mask: "255.255.255.0"
+      gw: "10.0.2.1"
+      dhcp_range: "10.0.2.10,10.0.2.254"
+      bridge: true
+      hosts: "beta-host"
+
+    - name: "Beta-core"
+      subnet_ip: "10.1.10.8"
+      subnet_mask: "255.255.255.252"
+      gw: "10.1.10.9"
+      dhcp_range: null
+      bridge: false
+      hosts: null
+    
+    - name: "Gamma"
+      subnet_ip: "10.0.3.0"
+      subnet_mask: "255.255.255.0"
+      gw: "10.0.3.1"
+      dhcp_range: "10.0.3.10,10.0.3.254"
+      bridge: true
+      hosts: "gamma-host"    
+    
+    - name: "Gamma-core"
+      subnet_ip: "10.1.10.12"
+      subnet_mask: "255.255.255.252"
+      gw: "10.1.10.13"
+      dhcp_range: null
+      bridge: false
+      hosts: null
+
+    - name: "Delta"
+      subnet_ip: "10.0.4.0"
+      subnet_mask: "255.255.255.0"
+      gw: "10.0.4.1"
+      dhcp_range: "10.0.4.10,10.0.4.254"
+      bridge: true
+      hosts: "delta-host"  
+
+    - name: "Delta-core"
+      subnet_ip: "10.1.10.16"
+      subnet_mask: "255.255.255.252"
+      gw: "10.1.10.17"
+      dhcp_range: null
+      bridge: false
+      hosts: null 
+
+  routers:
+    - name: "core"
+      interfaces:
+        - name: "alpha-core"
+          ip: "10.1.10.5" # 10.1.10.4 - 7
+          netmask: "255.255.255.252"
+        - name: "beta-core"
+          ip: "10.1.10.9" # 10.1.10.8 - 11
+        - name: "gamma-core"
+          ip: "10.1.10.13" # 10.1.10.12 - 15
+        - name: "delta-core"
+          ip: "10.1.10.17" # 10.1.10.16 - 19
+
+    - name: "local"
+      interfaces:
+        - name: "alpha-local"
+          ip: "10.0.1.1"
+          ip-core: "10.1.10.6"
+        - name: "beta-local"
+          ip: "10.0.2.1"
+          ip-core: "10.1.10.10" 
+        - name: "gamma-local"
+          ip: "10.0.3.1"
+          ip-core: "10.1.10.14"
+        - name: "delta-local"
+          ip: "10.0.4.1"
+          ip-core: "10.1.10.18"
+
+#  bridge: # Not needed since we define bridge in subnets
+  veth:

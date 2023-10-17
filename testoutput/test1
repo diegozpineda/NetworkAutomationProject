@@ -1,0 +1,84 @@
+
+PLAY [namespace creator] *******************************************************
+
+TASK [Test print namespace] ****************************************************
+ok: [localhost] => {
+    "msg": [
+        {
+            "bridge": true,
+            "dhcp_range": "10.0.1.10,10.0.1.254",
+            "gw": "10.0.1.1",
+            "hosts": "alpha-host",
+            "name": "Alpha",
+            "subnet_ip": "10.0.1.0",
+            "subnet_mask": "255.255.255.0"
+        },
+        {
+            "bridge": false,
+            "dhcp_range": null,
+            "gw": "10.1.10.5",
+            "hosts": null,
+            "name": "Alpha-core",
+            "subnet_ip": "10.1.10.4",
+            "subnet_mask": "255.255.255.252"
+        },
+        {
+            "bridge": true,
+            "dhcp_range": "10.0.2.10,10.0.2.254",
+            "gw": "10.0.2.1",
+            "hosts": "beta-host",
+            "name": "Beta",
+            "subnet_ip": "10.0.2.0",
+            "subnet_mask": "255.255.255.0"
+        },
+        {
+            "bridge": false,
+            "dhcp_range": null,
+            "gw": "10.1.10.9",
+            "hosts": null,
+            "name": "Beta-core",
+            "subnet_ip": "10.1.10.8",
+            "subnet_mask": "255.255.255.252"
+        },
+        {
+            "bridge": true,
+            "dhcp_range": "10.0.3.10,10.0.3.254",
+            "gw": "10.0.3.1",
+            "hosts": "gamma-host",
+            "name": "Gamma",
+            "subnet_ip": "10.0.3.0",
+            "subnet_mask": "255.255.255.0"
+        },
+        {
+            "bridge": false,
+            "dhcp_range": null,
+            "gw": "10.1.10.13",
+            "hosts": null,
+            "name": "Gamma-core",
+            "subnet_ip": "10.1.10.12",
+            "subnet_mask": "255.255.255.252"
+        },
+        {
+            "bridge": true,
+            "dhcp_range": "10.0.4.10,10.0.4.254",
+            "gw": "10.0.4.1",
+            "hosts": "delta-host",
+            "name": "Delta",
+            "subnet_ip": "10.0.4.0",
+            "subnet_mask": "255.255.255.0"
+        },
+        {
+            "bridge": false,
+            "dhcp_range": null,
+            "gw": "10.1.10.17",
+            "hosts": null,
+            "name": "Delta-core",
+            "subnet_ip": "10.1.10.16",
+            "subnet_mask": "255.255.255.252"
+        }
+    ]
+}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
