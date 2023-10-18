@@ -22,4 +22,3 @@
       ansible.builtin.command: ip link add name "{{ item.get('hosts') }}" type bridge
       when: "{{ item.get('bridge') }}" 
       loop: "{{ Network.subnets | from_yaml }}"
-

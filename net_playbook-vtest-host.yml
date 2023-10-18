@@ -42,18 +42,32 @@
       ansible.builtin.command: ip link add "{{ item.get('hosts') }}"_a type veth peer name "{{ item.get('hosts') }}"_b
       #register: veth_test
       #when: "{{ item.get('bridge') }}"
-      when: item.get('hosts') is defined
+      when: 
+       - item.get('hosts') is defined
+       - item.get('hosts') != None
       loop: "{{ Network.subnets | from_yaml }}"
       become: yes
 
     - name: "Attach host_a veths to host namespace"
       ansible.builtin.command: ip link set "{{ item.get('hosts') }}"_a netns "{{ item.get('hosts') }}"
-      when: item.get('hosts') is defined
-      loop: "{{ Network.subnets | from yaml }}"
+      when: 
+       - item.get('hosts') is defined
+       - item.get('hosts') != None
+      loop: "{{ Network.subnets | from_yaml }}"
       become: yes
 
     - name: "Attach host_b veths to bridge"
       ansible.builtin.command: ip link set dev "{{ item.get('hosts') }}"_b master "{{ item.get('name') }}"-bridge
-      when: item.get('hosts') is defined
-      loop: "{{ Network.subnets | from yaml }}"
+      when: 
+       - item.get('hosts') is defined
+       - item.get('hosts') != None
+      loop: "{{ Network.subnets | from_yaml }}"
+      become: yes
+
+    - name: "Turn up host_b veths (root/controller side)"
+      ansible.builtin.command: ip link set dev "{{ item.get('hosts') }}"_b up 
+      when: 
+       - item.get('hosts') is defined
+       - item.get('hosts') != None
+      loop: "{{ Network.subnets | from_yaml }}"
       become: yes

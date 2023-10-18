@@ -7,19 +7,39 @@
     - net_datastructure.yml
 
   tasks:
-    - name: Test print namespace
-      ansible.builtin.debug:
-        msg: "{{ item.get('name') }}"
-      loop: "{{ Network.subnets | from_yaml }}"
+    # - name: Test print namespace
+    #   ansible.builtin.debug:
+    #     msg: "{{ item.get('name') }}"
+    #   loop: "{{ Network.subnets | from_yaml }}"
 
-    - name: Create network namespaces
+    # - name: Create network namespaces
+    #   community.general.ip_netns:
+    #     name: "{{ item.get('name') }}"
+    #   loop: "{{ Network.subnets | from_yaml }}"
+    #   become: yes
+
+    - name: Create network namespaces hosts
       community.general.ip_netns:
-        name: "{{ item.get('name') }}"
+       name: "{{ item.get('hosts') }}"
+      when: item.get('hosts') is defined
+      loop: "{{ Network.subnets | from_yaml }}"
+      become: yes
+
+    - name: Create network namespaces routers 
+      community.general.ip_netns:
+       name: "{{ item.get('router') }}"
+      when: item.get('router') is defined
       loop: "{{ Network.subnets | from_yaml }}"
       become: yes
 
     - name: Create bridges
-      ansible.builtin.command: ip link add name "{{ item.get('hosts') }}" type bridge
+      ansible.builtin.command: ip link add name "{{ item.get('name') }}"-bridge type bridge
+      when: "{{ item.get('bridge') }}" 
+      loop: "{{ Network.subnets | from_yaml }}"
+      become: yes
+
+    - name: Enable bridges to UP state
+      ansible.builtin.command: ip link set dev "{{ item.get('name') }}"-bridge up
       when: "{{ item.get('bridge') }}" 
       loop: "{{ Network.subnets | from_yaml }}"
       become: yes
@@ -31,3 +51,10 @@
     - name: Show brctl output
       ansible.builtin.debug:
         var: command_output.stdout
+
+    # - name: Create Host veth's
+    #   ansible.builtin.command: ip link add "{{ item.get('hosts') }}"_a type veth peer name "{{ item.get('hosts') }}"_b
+    #   #register: veth_test
+    #   when: "{{ item.get('bridge') }}"
+    #   loop: "{{ Network.subnets | from_yaml }}"
+    #   become: yes
