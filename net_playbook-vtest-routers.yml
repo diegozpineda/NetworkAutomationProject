@@ -14,7 +14,7 @@
       #when: "{{ item.get('bridge') }}"
       when: 
        - item.get('router') is defined
-       - item.get('router') != None
+       - item.get('hosts') != None 
       loop: "{{ Network.subnets | from_yaml }}"
       become: yes
 
@@ -22,7 +22,7 @@
       ansible.builtin.command: ip link set "{{ item.get('router') }}"_a netns "{{ item.get('router') }}"
       when: 
        - item.get('router') is defined
-       - item.get('router') != None
+       - item.get('hosts') != None 
       loop: "{{ Network.subnets | from_yaml }}"
       become: yes
 
@@ -38,6 +38,6 @@
       ansible.builtin.command: ip link set dev "{{ item.get('router') }}"_b up 
       when: 
        - item.get('router') is defined
-       - item.get('router') != None
+       - item.get('hosts') != None 
       loop: "{{ Network.subnets | from_yaml }}"
       become: yes
