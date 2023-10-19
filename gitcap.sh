@@ -11,5 +11,5 @@ git status
 
 read -p "Comments for upload to  project?: " name
 git commit -m "$name"
-git push
-
+#git push
+git push --set-upstream origin ryan_branch
