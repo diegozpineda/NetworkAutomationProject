@@ -52,9 +52,12 @@
       ansible.builtin.debug:
         var: command_output.stdout
 
-    # - name: Create Host veth's
-    #   ansible.builtin.command: ip link add "{{ item.get('hosts') }}"_a type veth peer name "{{ item.get('hosts') }}"_b
-    #   #register: veth_test
-    #   when: "{{ item.get('bridge') }}"
-    #   loop: "{{ Network.subnets | from_yaml }}"
-    #   become: yes
+    - name: Deploy host veths via imported task
+      ansible.builtin.import_tasks: 
+        file: net_playbook-vtest-host.yml
+    
+    - name: Deploy router veths via imported task
+      ansible.builtin.import_tasks: 
+        file: net_playbook-vtest-routers.yml
+    
+    

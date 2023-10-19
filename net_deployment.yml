@@ -1,0 +1,32 @@
+---
+- name: namespace creator
+  hosts: localhost
+  gather_facts: No
+
+  vars_files:
+    - net_datastructure-new2.yml
+    #- net_datastructure.yml
+
+  tasks:
+    - name: Deploy host and router namespace via imported task
+      ansible.builtin.import_tasks: 
+        file: net_playbook-namespace.yml
+
+    - name: Deploy Bridge interfaces via imported task
+      ansible.builtin.import_tasks: 
+        file: net_playbook-bridgecreate.yml
+
+    - name: Deploy host veths via imported task
+      ansible.builtin.import_tasks: 
+        file: net_playbook-vtest-host.yml
+    
+    - name: Deploy router veths via imported task
+      ansible.builtin.import_tasks: 
+        file: net_playbook-vtest-routers.yml
+
+    - name: Assign host IPs & enable veths via imported task 
+      ansible.builtin.import_tasks: 
+        file: net_playbook-interface-lan.yml
+    
+    
+    

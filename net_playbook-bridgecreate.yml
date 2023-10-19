@@ -1,0 +1,31 @@
+# ---
+# - name: namespace creator
+#   hosts: localhost
+#   gather_facts: No
+
+#   vars_files:
+#     - net_datastructure.yml
+
+#   tasks:
+
+    - name: Create bridges
+      ansible.builtin.command: ip link add name "{{ item.get('name') }}"-bridge type bridge
+      when: item.get('bridge') 
+      loop: "{{ Network.subnets | from_yaml }}"
+      become: yes
+
+    - name: Enable bridges to UP state
+      ansible.builtin.command: ip link set dev "{{ item.get('name') }}"-bridge up
+      when: item.get('bridge')
+      loop: "{{ Network.subnets | from_yaml }}"
+      become: yes
+
+    - name: Capture brctl output
+      ansible.builtin.command: brctl show
+      register: command_output
+
+    - name: Show brctl output
+      ansible.builtin.debug:
+        var: command_output.stdout
+    
+    

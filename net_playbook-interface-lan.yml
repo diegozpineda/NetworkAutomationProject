@@ -1,0 +1,40 @@
+# ---
+# - name: namespace creator
+#   hosts: localhost
+#   gather_facts: No
+
+#   vars_files:
+#     #- net_datastructure.yml
+#     - net_datastructure-new2.yml
+
+#   tasks:
+
+    # - name: "Test veth variable"
+    #   ansible.builtin.debug:
+    #     msg: "ip netns exec {{ item.get('hosts') }} ip address add {{ item.get('ip') }}{{ item.get('cidr') }} dev {{ item.get('hosts') }}_a"
+    #   loop: "{{ Network['veth'][2]['interfaces'] | from_yaml }}"
+
+    # - name: "Test veth up"
+    #   ansible.builtin.debug:
+    #     msg: "ip netns exec {{ item.get('hosts') }} ip link set dev {{ item.get('hosts') }}_a up"
+    #   loop: "{{ Network['veth'][2]['interfaces'] | from_yaml }}"
+
+    # - name: "Test lo up"
+    #   ansible.builtin.debug:
+    #     msg: "ip netns exec {{ item.get('hosts') }} ip link set dev lo up"
+    #   loop: "{{ Network['veth'][2]['interfaces'] | from_yaml }}"
+
+    - name: "Assign host interface ip on host_a link"
+      ansible.builtin.command: "ip netns exec {{ item.get('hosts') }} ip address add {{ item.get('ip') }}{{ item.get('cidr') }} dev {{ item.get('hosts') }}_a"
+      loop: "{{ Network['veth'][2]['interfaces'] | from_yaml }}"
+      become: yes
+
+    - name: "Turn up host_a link"
+      ansible.builtin.command:  "ip netns exec {{ item.get('hosts') }} ip link set dev {{ item.get('hosts') }}_a up"
+      loop: "{{ Network['veth'][2]['interfaces'] | from_yaml }}"
+      become: yes
+
+    - name: "turn up host lo link"
+      ansible.builtin.command: "ip netns exec {{ item.get('hosts') }} ip link set dev lo up"
+      loop: "{{ Network['veth'][2]['interfaces'] | from_yaml }}"
+      become: yes
