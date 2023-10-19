@@ -1,0 +1,34 @@
+---
+  - name: ip forwarding
+    hosts: localhost
+    gather_facts: No
+
+    vars_files:
+      - net_datastructure-new3.yml
+
+    tasks:
+
+#Static Routes
+#printf "${grn}Setting static routes${wht}\n"
+# Configure routes on the core router
+      - name: IP forwarding
+        ansible.builtin.debug: 
+          msg: "ip netns exec lnd-nat-cor ip route add 10.0.1.0/24 via 10.0.0.6"
+        become: yes
+
+# sudo ip netns exec lnd-nat-cor ip route add 10.0.2.0/16 via 10.0.0.10
+# sudo ip netns exec lnd-nat-cor ip route add 10.0.3.0/16 via 10.0.0.14
+# sudo ip netns exec lnd-nat-cor ip route add 10.0.4.0/16 via 10.0.0.18
+# sudo ip netns exec lnd-nat-cor ip route add default via 10.0.0.2
+
+# #Configure default routes on the routers
+# sudo ip netns exec howard-nrtr ip route add default via 10.0.0.5
+# sudo ip netns exec michael-srtr ip route add default via 10.0.0.9
+# sudo ip netns exec camilo-ertr ip route add default via 10.0.0.13
+# sudo ip netns exec ming-wrtr ip route add default via 10.0.0.17
+
+# #Configure the default routes on the hosts
+# sudo ip netns exec chrys-nhost ip route add default via 10.0.1.1
+# sudo ip netns exec david-shost ip route add default via 10.0.2.1
+# sudo ip netns exec abdul-ehost ip route add default via 10.0.3.1
+# sudo ip netns exec mark-whost ip route add default via 10.0.4.1
