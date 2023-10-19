@@ -92,22 +92,27 @@ Network:
         - name: "north-core"
           ip: "10.0.0.5" # 10.1.10.4 - 7
           cidr: "/30"
+          router-lan: "howard-nrtr"
         #- subnet: "north-core"
         - name: "south-core"
           ip: "10.0.0.9" # 10.1.10.8 - 11
           cidr: "/30"
+          router-lan: "michael-srtr"
         #- name: "south-core"
         - name: "east-core"
           ip: "10.0.0.13" # 10.1.10.12 - 15
           cidr: "/30"
+          router-lan: "camilo-ertr"
         #- name: "east-core"
         - name: "west-core"
           ip: "10.0.0.17" # 10.1.10.16 - 19
           cidr: "/30"
+          router-lan: "ming-wrtr"
         #- name: "west-core"
         - name: "lnd-nat-cor"
           ip: "10.0.0.1" # 10.1.10.0 - 4
           cidr: "/30"
+          router-lan: Null
         #- name: "lnd-nat-cor"
     - name: "wan-local"
       interfaces:
