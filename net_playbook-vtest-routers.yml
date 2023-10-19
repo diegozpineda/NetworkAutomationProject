@@ -1,44 +1,14 @@
----
-- name: namespace creator
-  hosts: localhost
-  gather_facts: No
+#---
+#- name: namespace creator
+#  hosts: localhost
+#  gather_facts: No
+#
+#  vars_files:
+#    - net_datastructure.yml
 
-  vars_files:
-    - net_datastructure.yml
+  # tasks:
 
-  tasks:
-#    - name: Test print namespace
-#      ansible.builtin.debug:
-#        msg: "{{ item.get('name') }}"
-#      loop: "{{ Network.subnets | from_yaml }}"
-
-#    - name: Create network namespaces
-#      community.general.ip_netns:
-#        name: "{{ item.get('name') }}"
-#      loop: "{{ Network.subnets | from_yaml }}"
-#      become: yes
-
-#    - name: Create bridges
-#      ansible.builtin.command: ip link add name "{{ item.get('hosts') }}" type bridge
-#      when: "{{ item.get('bridge') }}" 
-#      loop: "{{ Network.subnets | from_yaml }}"
-#      become: yes
-
-    # - name: Enable bridges to UP state
-    #   ansible.builtin.command: ip link set dev "{{ item.get('hosts') }}" up
-    #   when: "{{ item.get('bridge') }}" 
-    #   loop: "{{ Network.subnets | from_yaml }}"
-    #   become: yes
-
-    # - name: Capture brctl output
-    #   ansible.builtin.command: brctl show
-    #   register: command_output
-
-    # - name: Show brctl output
-    #   ansible.builtin.debug:
-    #     var: command_output.stdout
-
-    - name: "Create Host veth's (host_a and host_b)"
+    - name: "Create Router veth's (router_a and router_b)"
       ansible.builtin.command: ip link add "{{ item.get('router') }}"_a type veth peer name "{{ item.get('router') }}"_b
       #register: veth_test
       #when: "{{ item.get('bridge') }}"
@@ -48,7 +18,7 @@
       loop: "{{ Network.subnets | from_yaml }}"
       become: yes
 
-    - name: "Attach host_a veths to host namespace"
+    - name: "Attach router_a veths to router namespace"
       ansible.builtin.command: ip link set "{{ item.get('router') }}"_a netns "{{ item.get('router') }}"
       when: 
        - item.get('router') is defined
@@ -56,7 +26,7 @@
       loop: "{{ Network.subnets | from_yaml }}"
       become: yes
 
-    - name: "Attach host_b veths to bridge"
+    - name: "Attach router_b veths to bridge (all except lnd-nat-core)"
       ansible.builtin.command: ip link set dev "{{ item.get('router') }}"_b master "{{ item.get('name') }}"-bridge
       when: 
        - item.get('router') is defined
@@ -64,7 +34,7 @@
       loop: "{{ Network.subnets | from_yaml }}"
       become: yes
 
-    - name: "Turn up host_b veths (root/controller side)"
+    - name: "Turn up router_b veths (root/controller side)"
       ansible.builtin.command: ip link set dev "{{ item.get('router') }}"_b up 
       when: 
        - item.get('router') is defined

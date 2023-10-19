@@ -1,0 +1,26 @@
+# ---
+# - name: namespace creator
+#   hosts: localhost
+#   gather_facts: No
+
+#   vars_files:
+#     - net_datastructure.yml
+
+#   tasks:
+
+    - name: Create network namespaces hosts
+      community.general.ip_netns:
+       name: "{{ item.get('hosts') }}"
+      when: item.get('hosts') is defined
+      loop: "{{ Network.subnets | from_yaml }}"
+      become: yes
+
+    - name: Create network namespaces routers 
+      community.general.ip_netns:
+       name: "{{ item.get('router') }}"
+      when: item.get('router') is defined
+      loop: "{{ Network.subnets | from_yaml }}"
+      become: yes
+
+    
+    
