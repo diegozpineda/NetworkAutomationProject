@@ -1,0 +1,59 @@
+# ---
+# - name: namespace creator
+#   hosts: localhost
+#   gather_facts: No
+
+#   vars_files:
+#    - net_datastructure-new3.yml
+
+#   tasks:
+    # - name: "Create Core Router veth's (router_c is core side and router_n is lan side)"
+    #   ansible.builtin.debug: 
+    #     msg: "ip link add {{ item.get('router') }}_c type veth peer name {{ item.get('router') }}_n"
+    #   when: 
+    #    - item.get('router') is defined
+    #    - item.get('hosts') != None 
+    #   loop: "{{ Network.subnets | from_yaml }}"
+    #   become: yes
+
+    # - name: "Attach Core router_c veth to lnd-nat-cor namespace"
+    #   ansible.builtin.debug: 
+    #     msg: "ip link set {{ item.get('router') }}_c netns lnd-nat-cor"
+    #   when: 
+    #    - item.get('router') is defined
+    #    - item.get('hosts') != None 
+    #   loop: "{{ Network.subnets | from_yaml }}"
+    #   become: yes
+
+    # - name: "Attach Core router_n lan veth to lan router namespace"
+    #   ansible.builtin.debug: 
+    #     msg: "ip link set {{ item.get('router') }}_n netns {{ item.get('router') }}"
+    #   when: 
+    #    - item.get('router') is defined
+    #    - item.get('hosts') != None 
+    #   loop: "{{ Network.subnets | from_yaml }}"
+    #   become: yes
+
+    - name: "Create Core Router veth's (router_c is core side and router_n is lan side)"
+      ansible.builtin.command: "ip link add {{ item.get('router') }}_c type veth peer name {{ item.get('router') }}_n"
+      when: 
+       - item.get('router') is defined
+       - item.get('hosts') != None 
+      loop: "{{ Network.subnets | from_yaml }}"
+      become: yes
+
+    - name: "Attach Core router_c veth to lnd-nat-cor namespace"
+      ansible.builtin.command: "ip link set {{ item.get('router') }}_c netns lnd-nat-cor"
+      when: 
+       - item.get('router') is defined
+       - item.get('hosts') != None 
+      loop: "{{ Network.subnets | from_yaml }}"
+      become: yes
+
+    - name: "Attach Core router_n lan veth to lan router namespace"
+      ansible.builtin.command: "ip link set {{ item.get('router') }}_n netns {{ item.get('router') }}"
+      when: 
+       - item.get('router') is defined
+       - item.get('hosts') != None 
+      loop: "{{ Network.subnets | from_yaml }}"
+      become: yes
