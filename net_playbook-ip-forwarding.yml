@@ -1,0 +1,57 @@
+---
+ - name: ip forwarding
+   hosts: localhost
+   gather_facts: No
+
+   vars_files:
+    - net_datastructure-new3.yml
+
+   tasks:
+
+    #  - name: "Test Setting ip forward nf call iptables"
+    #    ansible.builtin.debug:
+    #      msg: "sysctl net.bridge.bridge-nf-call-iptables=0"
+      
+    #  - name: "test "
+    #    ansible.builtin.debug:
+    #      msg: "echo 'net.ipv4.ip_forward = 1' | sudo tee /etc/sysctl.d/10-ip-forwarding.conf"
+    
+    #  - name: "test "
+    #    ansible.builtin.debug:
+    #      msg: "echo 'net.ipv6.conf.default.forwarding = 1' | sudo tee /etc/sysctl.d/10-ip-forwarding.conf"
+
+    #  - name: "test "
+    #    ansible.builtin.debug:
+    #      msg: "echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee /etc/sysctl.d/10-ip-forwarding.conf"
+
+    #  - name: "Modified"
+    #    ansible.builtin.debug:
+    #      msg: "ip netns exec {{ item.get('router') }} sysctl -p /etc/sysctl.d/10-ip-forwarding.conf"
+    #    when:
+    #     - item.get('router') is defined
+    #     - item.get('router') != None
+    #    loop: "{{ Network.subnets | from_yaml }}"
+
+    - name: "Setting ip forward nf call iptables"
+      ansible.builtin.command: "sysctl net.bridge.bridge-nf-call-iptables=0"
+      become: yes
+
+    - name: "Turn on forwarding ipv4"
+      ansible.builtin.command: "echo 'net.ipv4.ip_forward = 1' | sudo tee /etc/sysctl.d/10-ip-forwarding.conf"
+      become: yes
+    
+    - name: "Turn on forwarding ipv6 default"
+      ansible.builtin.command: "echo 'net.ipv6.conf.default.forwarding = 1' | sudo tee /etc/sysctl.d/10-ip-forwarding.conf"
+      become: yes
+
+    - name: "Turn on forwarding for ipv6 all"
+      ansible.builtin.command: "echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee /etc/sysctl.d/10-ip-forwarding.conf"
+      become: yes
+
+    - name: "Enable forwarding for all routers"
+      ansible.builtin.command: "ip netns exec {{ item.get('router') }} sysctl -p /etc/sysctl.d/10-ip-forwarding.conf"
+      when:
+       - item.get('router') is defined
+       - item.get('router') != None
+      loop: "{{ Network.subnets | from_yaml }}"
+      become: yes
