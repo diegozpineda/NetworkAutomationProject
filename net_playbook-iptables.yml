@@ -1,13 +1,13 @@
 # NAT
 #printf "${grn}Enable the NAT function${wht}\n"
----
-- name: ip forwarding
-  hosts: localhost
-  gather_facts: No
-
-  vars_files:
-    - net_datastructure-new3.yml
-  tasks:
+#---
+#- name: ip forwarding
+#  hosts: localhost
+#  gather_facts: No
+#
+#  vars_files:
+#    - net_datastructure-new3.yml
+#  tasks:
 
     - name: iptables nat setup
       ansible.builtin.command: "iptables -t nat -F"
