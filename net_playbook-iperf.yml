@@ -4,16 +4,22 @@
   gather_facts: No
 
   vars: 
-    iperf_target: vm-north
+    iperf_ntarget: vm-north
+    iperf_wtarget: vm-south
 
   tasks:
 
-    - name: iperf
-      ansible.builtin.command: iperf --client {{ iperf_target }} --reportstyle C
-      register: iperf_results
+    - name: iperf Worth
+      ansible.builtin.command: iperf --client {{ iperf_ntarget }} --reportstyle C
+      register: iperf_nresults
+
+    - name: iperf West
+      ansible.builtin.command: iperf --client {{ iperf_wtarget2 }} --reportstyle C
+      register: iperf_wresults
 
     - name: output
       ansible.builtin.debug:
-        var: iperf_results.stdout
-
+        msg: 
+          - "North VM Results: {{ iperf_results.stdout }}"
+          - "West VM Results: {{ iperf_results.stdout }}"
 
