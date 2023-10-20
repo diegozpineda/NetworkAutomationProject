@@ -52,4 +52,6 @@
       ansible.builtin.import_tasks:
         file: net_playbook-ip-routes.yml
     
-    
+    - name: Enable iptables via imported taks    
+      ansible.builtin.import_tasks:
+        file: net_playbook-iptables.yml
