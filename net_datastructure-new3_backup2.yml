@@ -5,81 +5,81 @@ Network:
   last_updated: "2023-10-16"
   subnets:
     - name: "North"
-      subnet_ip: "10.255.1.0"
+      subnet_ip: "10.0.1.0"
       subnet_mask: "255.255.255.0"
-      gw: "10.255.1.1"
-      dhcp_range: "10.255.1.10,10.255.1.254"
+      gw: "10.0.1.1"
+      dhcp_range: "10.0.1.10,10.0.1.254"
       bridge: true
       hosts: "chrys-nhost"
       router: "howard-nrtr"
 
     - name: "North-core"
-      subnet_ip: "10.255.5.4"
+      subnet_ip: "10.0.5.4"
       subnet_mask: "255.255.255.252"
-      gw: "10.255.5.5"
+      gw: "10.0.5.5"
       dhcp_range: null
       bridge: false
       hosts: null
       router: null
 
     - name: "South"
-      subnet_ip: "10.255.2.0"
+      subnet_ip: "10.0.2.0"
       subnet_mask: "255.255.255.0"
-      gw: "10.255.2.1"
-      dhcp_range: "10.255.2.10,10.255.2.254"
+      gw: "10.0.2.1"
+      dhcp_range: "10.0.2.10,10.0.2.254"
       bridge: true
       hosts: "david-shost"
       router: "michael-srtr"
 
     - name: "South-core"
-      subnet_ip: "10.255.5.8"
+      subnet_ip: "10.0.5.8"
       subnet_mask: "255.255.255.252"
-      gw: "10.255.5.9"
+      gw: "10.0.5.9"
       dhcp_range: null
       bridge: false
       hosts: null
       router: null
     
     - name: "East"
-      subnet_ip: "10.255.3.0"
+      subnet_ip: "10.0.3.0"
       subnet_mask: "255.255.255.0"
-      gw: "10.255.3.1"
-      dhcp_range: "10.255.3.10,10.255.3.254"
+      gw: "10.0.3.1"
+      dhcp_range: "10.0.3.10,10.0.3.254"
       bridge: true
       hosts: "abdul-ehost"    
       router: "camilo-ertr"
     
     - name: "East-core"
-      subnet_ip: "10.255.5.12"
+      subnet_ip: "10.0.5.12"
       subnet_mask: "255.255.255.252"
-      gw: "10.255.5.13"
+      gw: "10.0.5.13"
       dhcp_range: null
       bridge: false
       hosts: null
       router: null
 
     - name: "West"
-      subnet_ip: "10.255.4.0"
+      subnet_ip: "10.0.4.0"
       subnet_mask: "255.255.255.0"
-      gw: "10.255.4.1"
-      dhcp_range: "10.255.4.10,10.255.4.254"
+      gw: "10.0.4.1"
+      dhcp_range: "10.0.4.10,10.0.4.254"
       bridge: true
       hosts: "mark-whost"  
       router: "ming-wrtr"
 
     - name: "West-core"
-      subnet_ip: "10.255.5.16"
+      subnet_ip: "10.0.5.16"
       subnet_mask: "255.255.255.252"
-      gw: "10.255.5.17"
+      gw: "10.0.5.17"
       dhcp_range: null
       bridge: false
       hosts: null 
       router: null
 
     - name: "LND-NAT-cor"
-      subnet_ip: "10.255.5.0"
+      subnet_ip: "10.0.5.0"
       subnet_mask: "255.255.255.252"
-      gw: "10.255.5.1"
+      gw: "10.0.5.1"
       dhcp_range: null
       bridge: false
       hosts: null 
@@ -90,27 +90,27 @@ Network:
     - name: "wan-core"
       interfaces:
         - name: "north-core"
-          ip: "10.255.5.5" # 10.1.10.4 - 7
+          ip: "10.0.5.5" # 10.1.10.4 - 7
           cidr: "/30"
           router-lan: "howard-nrtr"
         #- subnet: "north-core"
         - name: "south-core"
-          ip: "10.255.5.9" # 10.1.10.8 - 11
+          ip: "10.0.5.9" # 10.1.10.8 - 11
           cidr: "/30"
           router-lan: "michael-srtr"
         #- name: "south-core"
         - name: "east-core"
-          ip: "10.255.5.13" # 10.1.10.12 - 15
+          ip: "10.0.5.13" # 10.1.10.12 - 15
           cidr: "/30"
           router-lan: "camilo-ertr"
         #- name: "east-core"
         - name: "west-core"
-          ip: "10.255.5.17" # 10.1.10.16 - 19
+          ip: "10.0.5.17" # 10.1.10.16 - 19
           cidr: "/30"
           router-lan: "ming-wrtr"
         #- name: "west-core"
         - name: "lnd-nat-cor"
-          ip: "10.255.5.1" # 10.1.10.0 - 4
+          ip: "10.0.5.1" # 10.1.10.0 - 4
           cidr: "/30"
           router-lan: Null
           wan-ip: "10.0.5.2"
@@ -119,27 +119,27 @@ Network:
     - name: "wan-local"
       interfaces:
         - name: "north-local"
-          ip: "10.255.1.1"
+          ip: "10.0.1.1"
           cidr: "/24"
-          ip-core: "10.255.5.6"
+          ip-core: "10.0.5.6"
           cidr-core: "/30"
           hosts: "howard-nrtr"
         - name: "south-local"
-          ip: "10.255.2.1"
+          ip: "10.0.2.1"
           cidr: "/24"
-          ip-core: "10.255.5.10" 
+          ip-core: "10.0.5.10" 
           cidr-core: "/30"
           hosts: "michael-srtr"
         - name: "east-local"
-          ip: "10.255.3.1"
+          ip: "10.0.3.1"
           cidr: "/24"
-          ip-core: "10.255.5.14"
+          ip-core: "10.0.5.14"
           cidr-core: "/30"
           hosts: "camilo-ertr"
         - name: "west-local"
-          ip: "10.255.4.1"
+          ip: "10.0.4.1"
           cidr: "/24"
-          ip-core: "10.255.5.18"
+          ip-core: "10.0.5.18"
           cidr-core: "/30"
           hosts: "ming-wrtr"
 
@@ -148,16 +148,16 @@ Network:
     - name: "lan"
       interfaces: 
         - hosts: "chrys-nhost"
-          ip: "10.255.1.9"
+          ip: "10.0.1.9"
           cidr: "/24"
         - hosts: "david-shost"
-          ip: "10.255.2.9"
+          ip: "10.0.2.9"
           cidr: "/24"
         - hosts: "abdul-ehost"
-          ip: "10.255.3.9"
+          ip: "10.0.3.9"
           cidr: "/24"
         - hosts: "mark-whost" 
-          ip: "10.255.4.9"
+          ip: "10.0.4.9"
           cidr: "/24"
 
 
