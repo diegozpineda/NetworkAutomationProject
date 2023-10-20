@@ -1,30 +1,30 @@
 # NAT
 #printf "${grn}Enable the NAT function${wht}\n"
-# ---
-#   - name: ip forwarding
-#     hosts: localhost
-#     gather_facts: No
+---
+- name: ip forwarding
+  hosts: localhost
+  gather_facts: No
 
-#     vars_files:
-#       - net_datastructure-new3.yml
-#     tasks:
+  vars_files:
+    - net_datastructure-new3.yml
+  tasks:
 
-- name: iptables nat setup
-  ansible.builtin.command: "iptables -t nat -F"
-  become: yes
+    - name: iptables nat setup
+      ansible.builtin.command: "iptables -t nat -F"
+      become: yes
   
-- name: iptable nat post routing
-  ansible.builtin.command: "iptables -t nat    -A POSTROUTING -s 10.0.0.0/16 -o ens3 -j MASQUERADE"
-  become: yes
+    - name: iptable nat post routing
+      ansible.builtin.command: "iptables -t nat    -A POSTROUTING -s 10.255.0.0/16 -o ens3 -j MASQUERADE"
+      become: yes
 
-- name: iptable nat filter
-  ansible.builtin.command: "iptables -t filter -A FORWARD -i ens3 -o nat2crout -j ACCEPT"
-  become: yes
+    - name: iptable nat filter
+      ansible.builtin.command: "iptables -t filter -A FORWARD -i ens3 -o nat2crout -j ACCEPT"
+      become: yes
 
-- name: iptables
-  ansible.builtin.command: "iptables -t filter -A FORWARD -o ens3 -i nat2crout -j ACCEPT"
-  become: yes
+    - name: iptables
+      ansible.builtin.command: "iptables -t filter -A FORWARD -o ens3 -i nat2crout -j ACCEPT"
+      become: yes
 
-- name: iptable ip route
-  ansible.builtin.command: "ip route add 10.0.0.0/16 via 10.0.5.1"
-  become: yes
+    - name: iptable ip route
+      ansible.builtin.command: "ip route add 10.255.0.0/16 via 10.255.5.2"
+      become: yes
