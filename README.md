@@ -1,7 +1,7 @@
 # Amazon Capabilities Acceleration Program (CAP)
 ## 'CAP'Stone Network Automation Project
 #### Primary Contributions by Diego Pineda and Ryan McNair
-##### GNU GPLv3  'https://www.gnu.org/licenses/gpl-3.0.en.html'
+[![Licence](https://img.shields.io/github/license/larymak/Python-project-Scripts)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 
 ##'CAP'Stone Network Automation Project
@@ -22,4 +22,4 @@
     bridge has a host connected. By design this network has been built for expandability, but not
     for redundancy or for being highly available.
 
-###2)     
+    
