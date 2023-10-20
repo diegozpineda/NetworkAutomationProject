@@ -1,10 +1,11 @@
----
-- name: ip forwarding
-  hosts: localhost
-  gather_facts: No
-  vars_files:
-   - net_datastructure-new3.yml
-  tasks:
+#---
+#- name: ip forwarding
+#  hosts: localhost
+#  gather_facts: No
+#  vars_files:
+#   - net_datastructure-new3.yml
+       
+#  tasks:
 
 #Static Routes
 # Configure routes on the core router
