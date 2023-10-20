@@ -1,0 +1,19 @@
+---
+- name: iPerf
+  hosts: localhost
+  gather_facts: No
+
+  vars: 
+    iperf_target: vm-north
+
+  tasks:
+
+    - name: iperf
+      ansible.builtin.command: iperf --client {{ iperf_target }} --reportstyle C
+      register: iperf_results
+
+    - name: output
+      ansible.builtin.debug:
+        var: iperf_results.stdout
+
+
