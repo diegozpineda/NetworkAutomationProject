@@ -26,5 +26,5 @@
       become: yes
 
     - name: iptable ip route
-      ansible.builtin.command: "ip route add 10.255.0.0/16 via 10.255.5.2"
+      ansible.builtin.command: "ip route add 10.255.0.0/16 via 10.255.5.1"
       become: yes

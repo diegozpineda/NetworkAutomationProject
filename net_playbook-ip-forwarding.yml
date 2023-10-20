@@ -1,12 +1,12 @@
----
- - name: ip forwarding
-   hosts: localhost
-   gather_facts: No
+# ---
+#  - name: ip forwarding
+#    hosts: localhost
+#    gather_facts: No
 
-   vars_files:
-    - net_datastructure-new3.yml
+#    vars_files:
+#     - net_datastructure-new3.yml
 
-   tasks:
+#    tasks:
 
     #  - name: "Test Setting ip forward nf call iptables"
     #    ansible.builtin.debug:

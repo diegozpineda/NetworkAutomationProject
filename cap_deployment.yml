@@ -47,5 +47,9 @@
     - name: Enable IP forwarding via imported task
       ansible.builtin.import_tasks:
         file: net_playbook-ip-forwarding.yml
+
+    - name: Enable IP routes via imported task
+      ansible.builtin.import_tasks:
+        file: net_playbook-ip-routes.yml
     
     

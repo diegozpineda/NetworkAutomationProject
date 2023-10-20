@@ -113,7 +113,7 @@ Network:
           ip: "10.255.5.1" # 10.1.10.0 - 4
           cidr: "/30"
           router-lan: Null
-          wan-ip: "10.0.5.2"
+          wan-ip: "10.255.5.2"
           wan-cidr: "/30"
         #- name: "lnd-nat-cor"
     - name: "wan-local"
