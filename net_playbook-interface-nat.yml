@@ -1,0 +1,51 @@
+# ---
+# - name: NAT interface assignment
+#   hosts: localhost
+#   gather_facts: No
+#   vars:
+#     natpath: Network['veth'][0]['interfaces'][4]
+#   vars_files:
+#     #- net_datastructure.yml
+#     - net_datastructure-new3.yml
+
+#   tasks:
+
+    # - name: "Create local and wan veth on ldn-nat-core (lnd-nat-core_c and lnd_nat-core_w)"
+    #   ansible.builtin.debug:
+    #     msg: "ip link add {{ Network['veth'][0]['interfaces'][4].get('name') }}_c type veth peer name {{ Network['veth'][0]['interfaces'][4].get('name') }}_w"
+
+    # - name: "Assign local interface lnd-nat-core_c to lnd-nat-core"
+    #   ansible.builtin.debug:
+    #     msg: "ip link set {{ Network['veth'][0]['interfaces'][4].get('name') }}_c netns {{ Network['veth'][0]['interfaces'][4].get('name') }}"
+
+    # - name: "Assign address to lnd-nat-core_c interface "
+    #   ansible.builtin.debug:
+    #     msg: "ip netns exec {{ Network['veth'][0]['interfaces'][4].get('name') }} ip address add {{ Network['veth'][0]['interfaces'][4].get('ip')}}{{ Network['veth'][0]['interfaces'][4].get('cidr') }} dev {{ Network['veth'][0]['interfaces'][4].get('name') }}_c"
+
+    # - name: "Turn UP lnd-nat-core_c interface "
+    #   ansible.builtin.debug:
+    #     msg: "ip netns exec {{ Network['veth'][0]['interfaces'][4].get('name') }} ip link set dev {{ Network['veth'][0]['interfaces'][4].get('name') }}_c up"
+
+    # - name: "Assign address to lnd-nat-core_w interface (root/controller side) "
+    #   ansible.builtin.debug:
+    #     msg: "ip address add {{ Network['veth'][0]['interfaces'][4].get('wan-ip') }}{{ Network['veth'][0]['interfaces'][4].get('wan-cidr') }} dev {{ Network['veth'][0]['interfaces'][4].get('name') }}_w up"
+
+    - name: "Create local and wan veth on ldn-nat-core (lnd-nat-core_c and lnd_nat-core_w)"
+      ansible.builtin.command: "ip link add {{ Network['veth'][0]['interfaces'][4].get('name') }}_c type veth peer name {{ Network['veth'][0]['interfaces'][4].get('name') }}_w"
+      become: yes
+
+    - name: "Assign local interface lnd-nat-core_c to lnd-nat-core"
+      ansible.builtin.command: "ip link set {{ Network['veth'][0]['interfaces'][4].get('name') }}_c netns {{ Network['veth'][0]['interfaces'][4].get('name') }}"
+      become: yes
+
+    - name: "Assign address to lnd-nat-core_c interface "
+      ansible.builtin.command: "ip netns exec {{ Network['veth'][0]['interfaces'][4].get('name') }} ip address add {{ Network['veth'][0]['interfaces'][4].get('ip')}}{{ Network['veth'][0]['interfaces'][4].get('cidr') }} dev {{ Network['veth'][0]['interfaces'][4].get('name') }}_c"
+      become: yes
+
+    - name: "Turn UP lnd-nat-core_c interface "
+      ansible.builtin.command: "ip netns exec {{ Network['veth'][0]['interfaces'][4].get('name') }} ip link set dev {{ Network['veth'][0]['interfaces'][4].get('name') }}_c up"
+      become: yes
+
+    - name: "Assign address to lnd-nat-core_w interface (root/controller side) "
+      ansible.builtin.command: "ip address add {{ Network['veth'][0]['interfaces'][4].get('wan-ip') }}{{ Network['veth'][0]['interfaces'][4].get('wan-cidr') }} dev {{ Network['veth'][0]['interfaces'][4].get('name') }}_w"
+      become: yes

@@ -14,9 +14,9 @@ Network:
       router: "howard-nrtr"
 
     - name: "North-core"
-      subnet_ip: "10.0.5.4"
+      subnet_ip: "10.0.0.4"
       subnet_mask: "255.255.255.252"
-      gw: "10.0.5.5"
+      gw: "10.0.0.5"
       dhcp_range: null
       bridge: false
       hosts: null
@@ -32,9 +32,9 @@ Network:
       router: "michael-srtr"
 
     - name: "South-core"
-      subnet_ip: "10.0.5.8"
+      subnet_ip: "10.0.0.8"
       subnet_mask: "255.255.255.252"
-      gw: "10.0.5.9"
+      gw: "10.0.0.9"
       dhcp_range: null
       bridge: false
       hosts: null
@@ -50,9 +50,9 @@ Network:
       router: "camilo-ertr"
     
     - name: "East-core"
-      subnet_ip: "10.0.5.12"
+      subnet_ip: "10.0.0.12"
       subnet_mask: "255.255.255.252"
-      gw: "10.0.5.13"
+      gw: "10.0.0.13"
       dhcp_range: null
       bridge: false
       hosts: null
@@ -68,18 +68,18 @@ Network:
       router: "ming-wrtr"
 
     - name: "West-core"
-      subnet_ip: "10.0.5.16"
+      subnet_ip: "10.0.0.16"
       subnet_mask: "255.255.255.252"
-      gw: "10.0.5.17"
+      gw: "10.0.0.17"
       dhcp_range: null
       bridge: false
       hosts: null 
       router: null
 
     - name: "LND-NAT-cor"
-      subnet_ip: "10.0.5.0"
+      subnet_ip: "10.0.0.0"
       subnet_mask: "255.255.255.252"
-      gw: "10.0.5.1"
+      gw: "10.0.0.1"
       dhcp_range: null
       bridge: false
       hosts: null 
@@ -90,30 +90,30 @@ Network:
     - name: "wan-core"
       interfaces:
         - name: "north-core"
-          ip: "10.0.5.5" # 10.1.10.4 - 7
+          ip: "10.0.0.5" # 10.1.10.4 - 7
           cidr: "/30"
           router-lan: "howard-nrtr"
         #- subnet: "north-core"
         - name: "south-core"
-          ip: "10.0.5.9" # 10.1.10.8 - 11
+          ip: "10.0.0.9" # 10.1.10.8 - 11
           cidr: "/30"
           router-lan: "michael-srtr"
         #- name: "south-core"
         - name: "east-core"
-          ip: "10.0.5.13" # 10.1.10.12 - 15
+          ip: "10.0.0.13" # 10.1.10.12 - 15
           cidr: "/30"
           router-lan: "camilo-ertr"
         #- name: "east-core"
         - name: "west-core"
-          ip: "10.0.5.17" # 10.1.10.16 - 19
+          ip: "10.0.0.17" # 10.1.10.16 - 19
           cidr: "/30"
           router-lan: "ming-wrtr"
         #- name: "west-core"
         - name: "lnd-nat-cor"
-          ip: "10.0.5.1" # 10.1.10.0 - 4
+          ip: "10.0.0.1" # 10.1.10.0 - 4
           cidr: "/30"
           router-lan: Null
-          wan-ip: "10.0.5.2"
+          wan-ip: "10.0.0.2"
           wan-cidr: "/30"
         #- name: "lnd-nat-cor"
     - name: "wan-local"
@@ -121,25 +121,25 @@ Network:
         - name: "north-local"
           ip: "10.0.1.1"
           cidr: "/24"
-          ip-core: "10.0.5.6"
+          ip-core: "10.0.0.6"
           cidr-core: "/30"
           hosts: "howard-nrtr"
         - name: "south-local"
           ip: "10.0.2.1"
           cidr: "/24"
-          ip-core: "10.0.5.10" 
+          ip-core: "10.0.0.10" 
           cidr-core: "/30"
           hosts: "michael-srtr"
         - name: "east-local"
           ip: "10.0.3.1"
           cidr: "/24"
-          ip-core: "10.0.5.14"
+          ip-core: "10.0.0.14"
           cidr-core: "/30"
           hosts: "camilo-ertr"
         - name: "west-local"
           ip: "10.0.4.1"
           cidr: "/24"
-          ip-core: "10.0.5.18"
+          ip-core: "10.0.0.18"
           cidr-core: "/30"
           hosts: "ming-wrtr"
 
