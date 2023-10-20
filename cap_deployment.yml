@@ -55,3 +55,7 @@
     - name: Enable iptables via imported taks    
       ansible.builtin.import_tasks:
         file: net_playbook-iptables.yml
+
+    - name: Ping Test Entire Network
+      ansible.builtin.import_tasks:
+        file: net_playbook-ping.yml

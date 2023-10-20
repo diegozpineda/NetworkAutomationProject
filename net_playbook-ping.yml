@@ -1,0 +1,37 @@
+#---
+#- name: Ping Test
+#  hosts: localhost
+#  gather_facts: No
+
+  
+  tasks:
+    - name: Ping North
+      ansible.builtin.command: fping chrys-nhost howard-nrtr
+      register: nping
+
+    - name: Ping South
+      ansible.builtin.command: fping david-shost michael-srtr
+      register: sping
+
+    - name: Ping East
+      ansible.builtin.command: fping abdul-ehost camilo-ertr
+      register: eping
+
+    - name: Ping West
+      ansible.builtin.command: fping mark-whost ming-wrtr
+      register: wping
+
+    - name: Ping Core
+      ansible.builtin.command: fping lnd-nat-cor lnd-nat-cor_wan
+      register: cping
+
+    - name: Results
+      ansible.builtin.debug:
+        msg: 
+          - "North Results: {{ nping.stdout_lines }}" 
+          - "South Results: {{ sping.stdout_lines }}"
+          - "East Results: {{ eping.stdout_lines }}"
+          - "West Results: {{ wping.stdout_lines }}"
+          - "Core Results: {{ cping.stdout_lines }}"
+    
+
