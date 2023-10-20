@@ -1,13 +1,13 @@
----
-- name: Router interface assignment
-  hosts: localhost
-  gather_facts: No
+# ---
+# - name: Router interface assignment
+#   hosts: localhost
+#   gather_facts: No
 
-  vars_files:
-    #- net_datastructure.yml
-    - net_datastructure-new3.yml
+#   vars_files:
+#     #- net_datastructure.yml
+#     - net_datastructure-new3.yml
 
-  tasks:
+#   tasks:
 
     # - name: "Assign address to router_n interface on router"
     #   ansible.builtin.debug:
@@ -24,35 +24,65 @@
     #     msg: "ip netns exec {{ item.get('hosts') }} ip link set dev lo up"
     #   loop: "{{ Network['veth'][1]['interfaces'] | from_yaml }}"
 
-    # - name: "Assign address to router_n interface on router"
-    #   ansible.builtin.command: "ip netns exec {{ item.get('hosts') }} ip address add {{ item.get('ip-core') }}{{ item.get('cidr-core') }} dev {{ item.get('hosts') }}_n"
-    #   loop: "{{ Network['veth'][1]['interfaces'] | from_yaml }}"
-    #   become: yes
+    - name: "Assign address to router_n interface on router"
+      ansible.builtin.command: "ip netns exec {{ item.get('hosts') }} ip address add {{ item.get('ip-core') }}{{ item.get('cidr-core') }} dev {{ item.get('hosts') }}_n"
+      loop: "{{ Network['veth'][1]['interfaces'] | from_yaml }}"
+      become: yes
 
-    # - name: "Turn up local WAN router_n interface on router"
-    #   ansible.builtin.command: "ip netns exec {{ item.get('hosts') }} ip link set dev {{ item.get('hosts') }}_n up"
-    #   loop: "{{ Network['veth'][1]['interfaces'] | from_yaml }}"
-    #   become: yes
+    - name: "Turn up local WAN router_n interface on router"
+      ansible.builtin.command: "ip netns exec {{ item.get('hosts') }} ip link set dev {{ item.get('hosts') }}_n up"
+      loop: "{{ Network['veth'][1]['interfaces'] | from_yaml }}"
+      become: yes
 
-    # - name: "Trun up loopback interface on router"
-    #   ansible.builtin.command: "ip netns exec {{ item.get('hosts') }} ip link set dev lo up"
-    #   loop: "{{ Network['veth'][1]['interfaces'] | from_yaml }}"
-    #   become: yes
+    - name: "Trun up loopback interface on router"
+      ansible.builtin.command: "ip netns exec {{ item.get('hosts') }} ip link set dev lo up"
+      loop: "{{ Network['veth'][1]['interfaces'] | from_yaml }}"
+      become: yes
+
+    # - name: "Assign address to router_c interface on lnd-nat-cor"
+    #   ansible.builtin.debug:
+    #     msg: "ip netns exec lnd-nat-cor ip address add {{ item.get('ip') }}{{ item.get('cidr') }} dev {{ item.get('router-lan') }}_c"
+    #   when:
+    #    - item.get('router-lan') is defined
+    #    - item.get('router-lan') != None 
+    #   loop: "{{ Network['veth'][0]['interfaces'] | from_yaml }}"
+
+    # - name: "Turn up local WAN router_c interface on lnd-nat-cor"
+    #   ansible.builtin.debug:
+    #     msg: "ip netns exec lnd-nat-cor ip link set dev {{ item.get('router-lan') }}_c up"
+    #   when:
+    #    - item.get('router-lan') is defined
+    #    - item.get('router-lan') != None 
+    #   loop: "{{ Network['veth'][0]['interfaces'] | from_yaml }}"
+
+    # - name: "Trun up loopback interface on lnd-nat-cor"
+    #   ansible.builtin.debug:
+    #     msg: "ip netns exec {{ item.get('router-lan') }} ip link set dev lo up"
+    #   when:
+    #    - item.get('router-lan') is defined
+    #    - item.get('router-lan') != None 
+    #   loop: "{{ Network['veth'][0]['interfaces'] | from_yaml }}"
 
     - name: "Assign address to router_c interface on lnd-nat-cor"
-      ansible.builtin.debug:
-        msg: "ip netns exec lnd-nat-cor ip address add {{ item.get('ip') }}{{ item.get('cidr') }} dev {{ item.get('router-lan') }}_c"
+      ansible.builtin.command: "ip netns exec lnd-nat-cor ip address add {{ item.get('ip') }}{{ item.get('cidr') }} dev {{ item.get('router-lan') }}_c"
       when:
        - item.get('router-lan') is defined
        - item.get('router-lan') != None 
       loop: "{{ Network['veth'][0]['interfaces'] | from_yaml }}"
+      become: yes
 
-    # - name: "Turn up local WAN router_c interface on lnd-nat-cor"
-    #   ansible.builtin.debug:
-    #     msg: "ip netns exec lnd-nat-cor ip link set dev {{ item.get('hosts') }}_c up"
-    #   loop: "{{ Network['veth'][1]['interfaces'] | from_yaml }}"
+    - name: "Turn up local WAN router_c interface on lnd-nat-cor"
+      ansible.builtin.command: "ip netns exec lnd-nat-cor ip link set dev {{ item.get('router-lan') }}_c up"
+      when:
+       - item.get('router-lan') is defined
+       - item.get('router-lan') != None 
+      loop: "{{ Network['veth'][0]['interfaces'] | from_yaml }}"
+      become: yes
 
-    # - name: "Trun up loopback interface on lnd-nat-cor"
-    #   ansible.builtin.debug:
-    #     msg: "ip netns exec {{ item.get('hosts') }} ip link set dev lo up"
-    #   loop: "{{ Network['veth'][1]['interfaces'] | from_yaml }}"
+    - name: "Trun up loopback interface on lnd-nat-cor"
+      ansible.builtin.command: "ip netns exec {{ item.get('router-lan') }} ip link set dev lo up"
+      when:
+       - item.get('router-lan') is defined
+       - item.get('router-lan') != None 
+      loop: "{{ Network['veth'][0]['interfaces'] | from_yaml }}"
+      become: yes

@@ -35,4 +35,17 @@
     - name: Create core router and lan router veths via imported task
       ansible.builtin.import_tasks: 
         file: net_playbook-vtest-routers-core.yml
+
+    - name: Assign local router and core router addresses via imported task 
+      ansible.builtin.import_tasks: 
+        file: net_playbook-interface-wan-core.yml
+    
+    - name: Create nat router interfaces and assign addresses via imported task 
+      ansible.builtin.import_tasks: 
+        file: net_playbook-interface-nat.yml
+
+    - name: Enable IP forwarding via imported task
+      ansible.builtin.import_tasks:
+        file: net_playbook-ip-forwardring.yaml
+    
     
