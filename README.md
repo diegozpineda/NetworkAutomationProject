@@ -4,7 +4,7 @@
 [![Licence](https://img.shields.io/github/license/larymak/Python-project-Scripts)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 
-##'CAP'Stone Network Automation Project
+## 'CAP'Stone Network Automation Project
 
     This project was designed for and created as a practice to simulate a 
     real-world scenario for building a network using automation tools.
@@ -14,7 +14,7 @@
     to be dynamic. If the data file is updated, the 95% of the coding does
     not need to be altered.
 
-###1) Network Topology
+### 1) Network Topology
     A visual diagram of the network topology can be found in the network_diagram.pdf file.
     
     The network consists of a core router that is connected to the Internet and four
@@ -22,4 +22,19 @@
     bridge has a host connected. By design this network has been built for expandability, but not
     for redundancy or for being highly available.
 
-    
+### 2) Ansible Playbook
+#### - Deploy Namespaces Play
+#### - Deploy Bridge Interfaces Play
+#### - Deploy Host Veths Play
+#### - Deploy Router Veths Play
+#### - Assign LAN Host IPs Play
+#### - Assign WAN Host IPs Play
+#### - Deploy Core Router Veths Play
+#### - Assign Core Router IPs Play
+#### - Assign WAN Core IPs Play
+#### - Creat NAT Interfaces Play
+#### - Enable IP Forwarding Play
+#### - Enable IP Routes Play
+#### - Enable IPTables Play
+#### - Enable Network-Wide Ping Play
+
