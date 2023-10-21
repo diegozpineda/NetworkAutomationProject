@@ -2,7 +2,7 @@
 sudo /usr/bin/qemu-system-x86_64 \
    -enable-kvm \
    -drive file=/var/kvm/images/vm-west.img,if=virtio \
-   -cdrom /var/kvm/images/cloud-init-vm2.iso \
+   -cdrom vm-config/cloud-init-vm2.iso \
    -display curses \
    -nographic \
    -smp cpus=1 \
