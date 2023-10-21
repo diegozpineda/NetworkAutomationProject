@@ -1,6 +1,7 @@
+#!/bin/bash
 sudo /usr/bin/qemu-system-x86_64 \
    -enable-kvm \
-   -drive file=/var/kvm/images/bionic-server-cloudimg-amd64.img,if=virtio \
+   -drive file=/var/kvm/images/vm-north.img,if=virtio \
    -cdrom /var/kvm/images/cloud-init-vm1.iso \
    -display curses \
    -nographic \
