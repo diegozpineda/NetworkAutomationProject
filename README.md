@@ -23,7 +23,7 @@
     for redundancy or for being highly available.
 
 ### 2) Ansible Playbook
-#### - Deploy Namespaces Play
+#### - [Deploy Namespaces Play](net_playbook-namespace.vml)
 #### - Deploy Bridge Interfaces Play
 #### - Deploy Host Veths Play
 #### - Deploy Router Veths Play
