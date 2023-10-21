@@ -1,0 +1,11 @@
+version: 2
+ethernets:
+    ens3:
+      dhcp4: false
+      addresses:
+      - 10.255.1.7/24
+      optional: true
+      gateway4: 10.255.1.1
+      nameservers:
+        addresses: [10.0.0.1]
+
