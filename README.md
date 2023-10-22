@@ -1,4 +1,4 @@
-# Amazon Capabilities Acceleration Program (CAP)
+# OTS Capabilities Acceleration Program (CAP)
 ## 'CAP'Stone Network Automation Project
 #### Primary Contributions by Diego Pineda and Ryan McNair
 [![Licence](https://img.shields.io/github/license/larymak/Python-project-Scripts)](https://www.gnu.org/licenses/gpl-3.0.en.html)
