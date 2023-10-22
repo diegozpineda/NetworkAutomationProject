@@ -1,0 +1,9 @@
+---
+- name: Launch Flask Server
+  hosts: localhost
+  gather_facts: No
+
+  tasks:
+    - name: Launch Crypto Flask server in abdul-ehost namespace (East-bridge)
+      ansible.builtin.command: "sudo ip netns exec abdul-ehost python3 flask-server/flask_server2.py &"
+      become: yes

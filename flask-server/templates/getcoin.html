@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+   <body>
+      <h2>{{ coin }} data</h2>
+        <p>
+            <ul>
+                <li>Symbol: {{coin_data['symbol']}}</li>
+                <li>Homepage: {{coin_data['links']['homepage'][0]}}</li>
+                <li>Blockchain Sites:</li>
+                  <ul>
+                    {% for url in coin_data['links']['blockchain_site']%}
+                      <li><a href = "{{url}}">{{url}}</a></li>
+                    {% endfor %}
+                  </ul>
+                <li>Github Repos</li>
+                  <ul>
+                    {% for url in coin_data['links']['repos_url']['github']%}
+                      <li><a href = "{{url}}">{{url}}</a></li>
+                    {% endfor %}
+                  </ul>
+                <li>MarketData</li>
+                  <ul>
+                    <li>Current Price: {{coin_data['market_data']['current_price']['usd']}}</li>
+                    <li>All time high:  {{coin_data['market_data']['ath']['usd']}}</li>
+                    <li>Price Change 24h:  {{coin_data['market_data']['price_change_percentage_24h']}}</li>
+                    <li>Price Change 7d:  {{coin_data['market_data']['price_change_percentage_7d']}}</li>
+                    <li>Price Change 30d:  {{coin_data['market_data']['price_change_percentage_30d']}}</li>
+                  </ul>
+            </ul>
+        </p>   
+        
+      </ul>  
+   </body>
+</html>
