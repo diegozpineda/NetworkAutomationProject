@@ -5,57 +5,69 @@
 
   vars_files:
     - net_datastructure-new3.yml
-    #- net_datastructure.yml
 
   tasks:
-    - name: Deploy host and router namespace via imported task
+    - name: Deploy Host and Router Namespaces
       ansible.builtin.import_tasks: 
         file: net_playbook-namespace.yml
 
-    - name: Deploy Bridge interfaces via imported task
+    - name: Deploy Bridge Interfaces (Virtual Switch)
       ansible.builtin.import_tasks: 
         file: net_playbook-bridgecreate.yml
 
-    - name: Deploy host veths via imported task
+    - name: Deploy Host Veths (Virtual Connections)
       ansible.builtin.import_tasks: 
         file: net_playbook-vtest-host.yml
     
-    - name: Deploy router veths via imported task
+    - name: Deploy Router Veths (Virtual Connections)
       ansible.builtin.import_tasks: 
         file: net_playbook-vtest-routers.yml
 
-    - name: Assign host IPs & enable veths via imported task 
+    - name: Assign LAN Host IP Addresses & Enable Veths 
       ansible.builtin.import_tasks: 
         file: net_playbook-interface-lan.yml
     
-    - name: Assign host IPs & enable veths via imported task 
+    - name: Assign LAN Router IP Addresses & Enable Veths 
       ansible.builtin.import_tasks: 
         file: net_playbook-interface-wan-local.yml
 
-    - name: Create core router and lan router veths via imported task
+    - name: Deploy Core Router and LAN Router Veths
       ansible.builtin.import_tasks: 
         file: net_playbook-vtest-routers-core.yml
 
-    - name: Assign local router and core router addresses via imported task 
+    - name: Assign LAN Router and Core Router IP Addresses 
       ansible.builtin.import_tasks: 
         file: net_playbook-interface-wan-core.yml
     
-    - name: Create nat router interfaces and assign addresses via imported task 
+    - name: Deploy NAT Router Interfaces and IP Addresses 
       ansible.builtin.import_tasks: 
         file: net_playbook-interface-nat.yml
 
-    - name: Enable IP forwarding via imported task
+    - name: Enable IP Forwarding
       ansible.builtin.import_tasks:
         file: net_playbook-ip-forwarding.yml
 
-    - name: Enable IP routes via imported task
+    - name: Deploy IP Routes
       ansible.builtin.import_tasks:
         file: net_playbook-ip-routes.yml
     
-    - name: Enable iptables via imported taks    
+    - name: Enable iptables (Linux Firewall)
       ansible.builtin.import_tasks:
         file: net_playbook-iptables.yml
 
-    - name: Ping Test Entire Network
+    - name: Launch Virtual Machines (VMs) via Python Script
+      ansible.builtin.import_tasks:
+        file: net_playbook-vm-launch.yml
+
+    - name: Install and Launch iPerf on VMs
+      ansible.builtin.import_tasks:
+        file: net_playbook-vm-iperf.yml
+
+    - name: Ping Test of Entire Network
       ansible.builtin.import_tasks:
         file: net_playbook-ping.yml
+
+    - name: iPerf Test Results to VMs
+      ansible.builtin.import_tasks:
+        file: net_playbook-iperf.yml
+
