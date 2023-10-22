@@ -1,9 +1,9 @@
-#---
-#- name: Ping Test
-#  hosts: localhost
-#  gather_facts: No
+---
+- name: Ping Test
+  hosts: localhost
+  gather_facts: No
 
-#tasks:
+  tasks:
     - name: Ping North
       ansible.builtin.command: fping chrys-nhost howard-nrtr
       register: nping

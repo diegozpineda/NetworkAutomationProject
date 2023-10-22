@@ -1,6 +1,6 @@
 ---
 - name: Launch VMs
-  hosts: capvmhosts
+  hosts: vm-north, vm-west 
   gather_facts: Yes
 
   tasks:
