@@ -1,9 +1,9 @@
----
-- name: Launch VMs
-  hosts: localhost
-  gather_facts: No
+# ---
+# - name: Launch VMs
+#   hosts: localhost
+#   gather_facts: No
 
-  tasks:
+#   tasks:
     - name: Launch vm-deploy.py message
       ansible.builtin.debug:
         msg: "Launching vm-deploy.py, will wait 80 seconds for VMs to launch and then validate hosts are up via ping."

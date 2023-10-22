@@ -59,15 +59,12 @@
       ansible.builtin.import_tasks:
         file: net_playbook-vm-launch.yml
 
-    - name: Install and Launch iPerf on VMs
-      ansible.builtin.import_tasks:
-        file: net_playbook-vm-iperf.yml
+- name: Install and Launch iPerf on VMs
+  ansible.builtin.import_playbook: net_playbook-vm-iperf.yml
+      
+- name: Ping Test of Entire Network
+  ansible.builtin.import_playbook: net_playbook-ping.yml
 
-    - name: Ping Test of Entire Network
-      ansible.builtin.import_tasks:
-        file: net_playbook-ping.yml
-
-    - name: iPerf Test Results to VMs
-      ansible.builtin.import_tasks:
-        file: net_playbook-iperf.yml
+- name: iPerf Test Results to VMs
+  ansible.builtin.import_playbook: net_playbook-iperf.yml
 

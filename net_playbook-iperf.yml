@@ -10,11 +10,11 @@
   tasks:
 
     - name: VM North 
-      ansible.builtin.command: iperf --client {{ iperf_ntarget }}
+      ansible.builtin.command: iperf --client vm-north
       register: iperf_nresults
 
     - name: VM West
-      ansible.builtin.command: iperf --client {{ iperf_wtarget }}
+      ansible.builtin.command: iperf --client vm-west
       register: iperf_wresults
 
     - name: Transfer Results in Megabits per Second 
