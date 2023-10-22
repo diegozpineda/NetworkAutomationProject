@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+   <body>
+      <h2>{{ coin }} data</h2>
+
+        {% for dict in coin_data%}
+        <p>
+            <ul>
+                <li>Symbol: {{dict['symbol']}}</li>
+                <li>Description: {{dict['description']['en']}}</li>
+                <li>Homepage: {{dict['homepage']}}</li>
+                <li>Blockchain Sites:</li>
+                  <ul>
+                    {% for value in dict['blockchain_site']%}
+                      <li>{{dict}}</li>
+                    {% endfor %}
+                  </ul>
+            </ul>
+        </p>   
+        {% endfor %}
+      </ul>  
+   </body>
+</html>

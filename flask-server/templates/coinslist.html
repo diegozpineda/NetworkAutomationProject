@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+   <body>
+      <h2>Active coins list as of {{ current_utctime }} UTC</h2>
+
+        {% for dict in coins_list%}
+        <p>
+            <ul>
+                <li>Symbol: {{dict['symbol']}}, Name: {{dict['name']}}</li>
+            </ul>
+        </p>   
+        {% endfor %}
+      </ul>  
+   </body>
+</html>

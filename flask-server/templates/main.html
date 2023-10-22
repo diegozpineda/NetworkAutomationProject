@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+   <body>
+      <h1>Crypto Market Analyzer</h1>
+      <h2>by Diego Pineda</h2>
+
+      <p>This webpage will present current market data gathered via coingecko api.</p>
+      <p>Here are the top 10 coins by Market cap, with price percentage based off last 7d.</p>
+      <p>Data is current as of {{ current_utctime }} UTC</p>
+      
+        {% for dict in market_data%}
+        <p>
+            <ul>
+                <li>Coin: {{dict['id']}}</li>
+                <li>Current Price: {{dict['current_price']}}</li>
+                <li>Price Change in last 24h: {{dict['price_change_24h']}}</li>
+                <li>Price High in last 24h: {{dict['high_24h']}}</li>
+                <li>Price Low in last 24h: {{dict['low_24h']}}</li>
+                <li>Market Cap: {{dict['market_cap']}}</li>
+            </ul>
+        </p>   
+        {% endfor %}
+      </ul>  
+   </body>
+</html>
