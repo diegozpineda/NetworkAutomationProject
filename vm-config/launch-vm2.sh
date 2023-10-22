@@ -10,4 +10,4 @@ sudo /usr/bin/qemu-system-x86_64 \
    -net nic,netdev=tap2,macaddr=aa:a3:a3:75:c7:5e \
    -netdev bridge,id=tap2,br=West-bridge \
    -d int \
-   -D /var/log/qemu/qemu2.log    
+   -D /var/log/qemu/qemu2.log &

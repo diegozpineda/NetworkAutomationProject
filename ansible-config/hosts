@@ -1,0 +1,3 @@
+[capvmhosts]
+vm-north ansible_host=10.255.1.7 ansible_user=root
+vm-west ansible_host=10.255.4.7 ansible_user=root
