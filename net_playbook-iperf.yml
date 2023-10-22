@@ -9,17 +9,17 @@
 
   tasks:
 
-    - name: iperf North
-      ansible.builtin.command: iperf --client {{ iperf_ntarget }} --reportstyle C
+    - name: VM North 
+      ansible.builtin.command: iperf --client {{ iperf_ntarget }}
       register: iperf_nresults
 
-    - name: iperf West
-      ansible.builtin.command: iperf --client {{ iperf_wtarget }} --reportstyle C
+    - name: VM West
+      ansible.builtin.command: iperf --client {{ iperf_wtarget }}
       register: iperf_wresults
 
-    - name: output
+    - name: Transfer Results in Megabits per Second 
       ansible.builtin.debug:
         msg: 
-          - "North VM Results: {{ iperf_nresults.stdout }}"
-          - "West VM Results: {{ iperf_wresults.stdout }}"
+          - "North VM Results: {{ iperf_nresults.stdout_lines[6] }}"
+          - "West VM Results: {{ iperf_wresults.stdout_lines[6] }}"
 
