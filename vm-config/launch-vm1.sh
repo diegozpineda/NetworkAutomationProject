@@ -7,7 +7,7 @@ sudo /usr/bin/qemu-system-x86_64 \
    -nographic \
    -smp cpus=1 \
    -m 1G \
-   -net nic,netdev=tap1,macaddr=aa:a3:a3:af:50:24 \
+   -net nic,netdev=tap1,macaddr=aa:a3:a3:75:c7:5e \
    -netdev bridge,id=tap1,br=North-bridge \
    -d int \
-   -D /var/log/qemu/qemu.log    
+   -D /var/log/qemu/qemu2.log &

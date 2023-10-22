@@ -1,0 +1,28 @@
+---
+- name: Launch VMs
+  hosts: localhost
+  gather_facts: No
+
+  tasks:
+    - name: Launch vm-deploy.py message
+      ansible.builtin.debug:
+        msg: "Launching vm-deploy.py, will wait 80 seconds for VMs to launch and then validate hosts are up via ping."
+
+    - name: Launch VMs via vm-deploy.py
+      ansible.builtin.command: python3 vm-deploy.py
+      become: yes
+
+    - name: Test if vm-north is up
+      ansible.builtin.command: fping vm-north
+      register: vmnping
+
+    - name: Test if vm-west is up
+      ansible.builtin.command: fping vm-west
+      register: vmsping
+
+    - name: Display ping results
+      ansible.builtin.debug:
+        msg:
+          - "VM North Status: {{vmnping.stdout}}"
+          - "VM West Status: {{vmsping.stdout}}"
+

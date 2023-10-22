@@ -1,0 +1,16 @@
+---
+- name: Launch VMs
+  hosts: capvmhosts
+  gather_facts: Yes
+
+  tasks:
+    - name: Install iperf
+      ansible.builtin.apt:
+        name: iperf
+        update_cache: true
+      become: yes
+
+    - name: Launch iperf on both VMs
+      ansible.builtin.command: "iperf -s -D"
+
+
