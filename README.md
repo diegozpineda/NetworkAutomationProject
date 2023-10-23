@@ -5,21 +5,22 @@
 [License-img]: https://img.shields.io/github/license/larymak/Python-project-Scripts
 [License-url]: https://www.gnu.org/licenses/gpl-3.0.en.html
 
-#### Primary Contributions by: [Diego Pineda](https://github.com/diegozpineda) and [Ryan McNair](https://github.com/blacwolf4)
 
+##### Primary Contributions by: [Diego Pineda](https://github.com/diegozpineda) and [Ryan McNair](https://github.com/blacwolf4)
     This project was designed for and created as a practice to simulate a real-world scenario for building a network using 
     automation tools.
 
     The entire project has been done using Ansible (with a bit support from a Python script or two), and although we did 
-    hard-code some data, most of the Playbooks are setup to be dynamic. If the data file is updated 95% of the code will
-    work without being altered.
-
+    hard-code some data, most of the Playbooks are dynamic.
 ### Objectives
-**Primary Objectives** - These tasks are considered basic items that were learned during the training course.
+##### **Primary Objectives**
+- These tasks are considered basic items that were learned during the training course.
 
-**Secondary Objectives** - These tasks are considered to be more difficult and were discussed in class, but not necessarily mastered.
+##### **Secondary Objectives**
+- These tasks are considered to be more difficult and were discussed in class, but not necessarily mastered.
 
-**Tertiary Objectives** - These tasks build upon all of what we learned and require additional information that was not learned in class.
+##### **Tertiary Objectives**
+- These tasks build upon all of what we learned and require additional information that was not learned in class.
     
 ![](images/CAPStoneObjectivesList.png)
 
