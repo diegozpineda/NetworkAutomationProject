@@ -1,0 +1,63 @@
+---
+- name: ip forwarding
+  hosts: localhost
+  gather_facts: No
+  vars_files:
+   - net_datastructure-new3.yml
+  tasks:
+
+#Static Routes
+# Configure routes on the core router
+    - name: Core router, lnd-nat-cor to North subnet
+      ansible.builtin.command: "ip netns exec lnd-nat-cor ip route add 10.0.1.0/24 via 10.0.5.6"
+      become: yes
+
+    - name: Core router, lnd-nat-cor to South subnet
+      ansible.builtin.command: "ip netns exec lnd-nat-cor ip route add 10.0.2.0/24 via 10.0.5.10"
+      become: yes
+
+    - name: Core router, lnd-nat-cor to East subnet
+      ansible.builtin.command: "ip netns exec lnd-nat-cor ip route add 10.0.3.0/24 via 10.0.5.14"
+      become: yes
+
+    - name: Core router, lnd-nat-cor to West subnet
+      ansible.builtin.command: "ip netns exec lnd-nat-cor ip route add 10.0.4.0/24 via 10.0.5.18"
+      become: yes
+
+    - name: Core router, default route
+      ansible.builtin.command: "ip netns exec lnd-nat-cor ip route add default via 10.0.5.2"
+      become: yes
+    
+  # #Configure default routes on the routers
+    - name: North router, howard-nrtr default route
+      ansible.builtin.command: "ip netns exec howard-nrtr ip route add default via 10.0.5.5"
+      become: yes
+
+    - name: South router, michael-srtr default route
+      ansible.builtin.command: "ip netns exec michael-srtr ip route add default via 10.0.5.9"
+      become: yes
+
+    - name: East router, camilo-ertr default route
+      ansible.builtin.command: "ip netns exec camilo-ertr ip route add default via 10.0.5.13"
+      become: yes
+
+    - name: West router, ming-wrtr default route
+      ansible.builtin.command: "ip netns exec ming-wrtr ip route add default via 10.0.5.17"
+      become: yes  
+
+    # #Configure the default routes on the hosts
+    - name: Default route for North host, chrys-nhost
+      ansible.builtin.command: "ip netns exec chrys-nhost ip route add default via 10.0.1.1"
+      become: yes
+
+    - name: Default route for South host, david-shost
+      ansible.builtin.command: "ip netns exec david-shost ip route add default via 10.0.2.1"
+      become: yes
+
+    - name: Default route for East host, abdul-ehost
+      ansible.builtin.command: "ip netns exec abdul-ehost ip route add default via 10.0.3.1"
+      become: yes
+
+    - name: Default route for West host, mark-whost
+      ansible.builtin.command: "ip netns exec mark-whost ip route add default via 10.0.4.1"
+      become: yes
