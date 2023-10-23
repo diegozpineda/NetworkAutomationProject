@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+
+# Kill any active gunicorn process if running 
+echo -e "Stopping any active gunicorn processes if running\n\n"
+sudo killall -9 gunicorn
+
+
 # Kill any active VMs if running
 echo -e "Stopping any active VMs if running\n\n"
 sudo killall -9 qemu-system-x86_64
@@ -31,7 +37,11 @@ sudo ip link del dev West-bridge
 
 # Validation
 echo -e "Validate everything has been cleaned up\n"
-echo -e "Validate qemu is not running\n"
+#
+echo -e "\nValidate gunicorn is not running\n"
+ps aux | grep gunicorn
+#
+echo -e "\nValidate qemu is not running\n"
 ps aux | grep qemu-system-x86_64
 #
 echo -e "\nValidate all namespaces have been deleted\n"

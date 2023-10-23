@@ -68,3 +68,6 @@
 - name: iPerf Test Results to VMs
   ansible.builtin.import_playbook: net_playbook-iperf.yml
 
+- name: Launch Flask Server via gunicorn in abdule-ehost namespace
+  ansible.builtin.import_playbook: net_playbook-flask-server.yml
+
