@@ -1,9 +1,9 @@
 ---
-- name: Launch Flask Server
+- name: Launch Flask Server via gunicorn
   hosts: localhost
   gather_facts: No
 
   tasks:
     - name: Launch Crypto Flask server in abdul-ehost namespace (East-bridge)
-      ansible.builtin.command: "sudo ip netns exec abdul-ehost python3 flask-server/flask_server2.py &"
+      ansible.builtin.command: "sudo ip netns exec abdul-ehost gunicorn --bind 0.0.0.0:2224 wsgi:app -D --chdir flask-server/"
       become: yes
