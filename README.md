@@ -43,7 +43,7 @@ A visual diagram of the network topology can be found below (or in the [images d
 - [Deploy Router Veths (Virtual Connections)](net_playbook-vtest-routers.yml)
 - [Assign LAN Host IP Addresses & Enable Veths](net_playbook-interface-lan.yml)
 - [Assign LAN Router IP Addresses & Enable Veths](net_playbook-interface-wan-local.yml)
-- [Deploy Core Router Veths](net_playbook-vtest-router-core.yml)
+- [Deploy Core Router Veths](net_playbook-vtest-routers-core.yml)
 - [Assign LAN Router and Core Router IP Addresses](net_playbook-interface-wan-core.yml)
 - [Deploy NAT Router Interfaces and IP Addresses](net_playbook-interface-nat.yml)
 - [Enable IP Forwarding](net_playbook-ip-forwarding.yml)
