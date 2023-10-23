@@ -15,11 +15,17 @@
     hard-code some data, most of the Playbooks are setup to be dynamic. If the data file is updated 95% of the code will
     work without being altered.
 
-### 1) Objectives
+### Objectives
+**Primary Objectives** - These tasks are considered basic items that were learned during the training course.
+
+**Secondary Objectives** - These tasks are considered to be more difficult and were discussed in class, but not necessarily mastered.
+
+**Tertiary Objectives** - These tasks build upon all of what we learned and require additional information that was not learned in class.
+    
 ![](images/CAPStoneObjectivesList.png)
 
-### 2) Network Topology
-    A visual diagram of the network topology can be found below (also in the [images](images) folder).
+### Network Topology
+A visual diagram of the network topology can be found below (or in the [images directory](images)).
     
     The network consists of a core router that is connected to the Internet and four
     internal routers. Each of the internal routers is connected to a bridge, and each
@@ -28,19 +34,24 @@
 
 ![](images/CAP-StoneNetworkDiagram.png)
     
-### 2) Ansible Playbook
-#### - [Deploy Namespaces Play](net_playbook-namespace.yml)
-#### - Deploy Bridge Interfaces Play
-#### - Deploy Host Veths Play
-#### - Deploy Router Veths Play
-#### - Assign LAN Host IPs Play
-#### - Assign WAN Host IPs Play
-#### - Deploy Core Router Veths Play
-#### - Assign Core Router IPs Play
-#### - Assign WAN Core IPs Play
-#### - Creat NAT Interfaces Play
-#### - Enable IP Forwarding Play
-#### - Enable IP Routes Play
-#### - Enable IPTables Play
-#### - Enable Network-Wide Ping Play
+### Ansible Playbook Code Files
+- [Data Structure File](net_datastructure-new3.yml)
+- [CAP Stone Main Deployment Playbook](cap_depoyment.yml)
+- [Deploy Host and Router Namespaces](net_playbook-namespace.yml)
+- [Deploy Bridge Interfaces (Virtual Switch)](net_playbook-bridgecreate.yml)
+- [Deploy Host Veths (Virtual Connections)](net_playbook-vtest-host.yml)
+- [Deploy Router Veths (Virtual Connections)](net_playbook-vtest-routers.yml)
+- [Assign LAN Host IP Addresses & Enable Veths](net_playbook-interface-lan.yml)
+- [Assign LAN Router IP Addresses & Enable Veths](net_playbook-interface-wan-local.yml)
+- [Deploy Core Router Veths](net_playbook-vtest-router-core.yml)
+- [Assign LAN Router and Core Router IP Addresses](net_playbook-interface-wan-core.yml)
+- [Deploy NAT Router Interfaces and IP Addresses](net_playbook-interface-nat.yml)
+- [Enable IP Forwarding](net_playbook-ip-forwarding.yml)
+- [Deploy IP Routes](net_playbook-ip-routes.yml)
+- [Enable iptables (Linux Firewall)](net_playbook-iptables.yml)
+- [Launch Virtual Machines (VMs) via Python Script](net_playbook-vm-local.yml)
+- [Install and Launch iPerf on VMs](net_playbook-vm-iperf.yml)
+- [Ping Test of Entire Network](net_playbook-ping.yml)
+- [iPerf Test Results to VMs](net_playbook-iperf.yml)
+- [Launch Flask Server via gunicorn in abdul-ehost namespace](net_playbook-flask-server.yml)
 
