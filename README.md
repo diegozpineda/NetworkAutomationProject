@@ -36,7 +36,7 @@ A visual diagram of the network topology can be found below (or in the [images d
     
 ### Ansible Playbook Code Files
 - [Data Structure File](net_datastructure-new3.yml)
-- [CAP Stone Main Deployment Playbook](cap_depoyment.yml)
+- [CAP Stone Main Deployment Playbook](cap_deployment.yml)
 - [Deploy Host and Router Namespaces](net_playbook-namespace.yml)
 - [Deploy Bridge Interfaces (Virtual Switch)](net_playbook-bridgecreate.yml)
 - [Deploy Host Veths (Virtual Connections)](net_playbook-vtest-host.yml)
