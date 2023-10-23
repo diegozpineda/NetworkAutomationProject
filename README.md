@@ -1,21 +1,19 @@
 # OTS Capabilities Acceleration Program (CAP)
-## 'CAP'Stone Network Automation Project
-#### Primary Contributions by Diego Pineda and Ryan McNair
-[![License][License-img]][License-url] ![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/diegozpineda/NetworkAutomationProject) ![GitHub repo size](https://img.shields.io/github/repo-size/diegozpineda/NetworkAutomationProject)  ![GitHub repo file count (file type)](https://img.shields.io/github/directory-file-count/diegozpineda/NetworkAutomationProject) ![GitHub issues](https://img.shields.io/github/issues/diegozpineda/NetworkAutomationProject) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/diegozpineda/NetworkAutomationProject) [![](https://tokei.rs/b1/github/diegozpineda/NetworkAutomationProject)](https://github.com/diegozpineda/NetworkAutomationProject)
+## 'CAP'Stone Network Automation Project 
+## [![License][License-img]][License-url] ![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/diegozpineda/NetworkAutomationProject) ![GitHub repo size](https://img.shields.io/github/repo-size/diegozpineda/NetworkAutomationProject)  ![GitHub repo file count (file type)](https://img.shields.io/github/directory-file-count/diegozpineda/NetworkAutomationProject) ![GitHub issues](https://img.shields.io/github/issues/diegozpineda/NetworkAutomationProject) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/diegozpineda/NetworkAutomationProject) [![](https://tokei.rs/b1/github/diegozpineda/NetworkAutomationProject)](https://github.com/diegozpineda/NetworkAutomationProject)
 
 [License-img]: https://img.shields.io/github/license/larymak/Python-project-Scripts
 [License-url]: https://www.gnu.org/licenses/gpl-3.0.en.html
 
+#### Primary Contributions by [Diego Pineda](https://github.com/diegozpineda) and [Ryan McNair](https://github.com/blacwolf4)
 
-## 'CAP'Stone Network Automation Project
 
-    This project was designed for and created as a practice to simulate a 
-    real-world scenario for building a network using automation tools.
+    This project was designed for and created as a practice to simulate a real-world scenario for building a network using 
+    automation tools.
 
-    The entire project has been done using Ansible Playbooks, and although
-    we did end up hard-coding some data, most of the Playbooks are setup
-    to be dynamic. If the data file is updated, the 95% of the coding does
-    not need to be altered.
+    The entire project has been done using Ansible (with a bit support from a Python script or two), and although we did 
+    hard-code some data, most of the Playbooks are setup to be dynamic. If the data file is updated 95% of the code will
+    work without being altered.
 
 ### 1) Objectives
 ![](images/CAPStoneObjectives.png)
