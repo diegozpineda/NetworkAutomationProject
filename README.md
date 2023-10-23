@@ -1,7 +1,10 @@
 # OTS Capabilities Acceleration Program (CAP)
 ## 'CAP'Stone Network Automation Project
 #### Primary Contributions by Diego Pineda and Ryan McNair
-[![Licence](https://img.shields.io/github/license/larymak/Python-project-Scripts)](https://www.gnu.org/licenses/gpl-3.0.en.html)
+[![License][License-img]][License-url] ![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/diegozpineda/NetworkAutomationProject) ![GitHub repo size](https://img.shields.io/github/repo-size/diegozpineda/NetworkAutomationProject)  ![GitHub repo file count (file type)](https://img.shields.io/github/directory-file-count/diegozpineda/NetworkAutomationProject) ![GitHub issues](https://img.shields.io/github/issues/diegozpineda/NetworkAutomationProject) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/diegozpineda/NetworkAutomationProject) [![](https://tokei.rs/b1/github/diegozpineda/NetworkAutomationProject)](https://github.com/diegozpineda/NetworkAutomationProject)
+
+[License-img]: https://img.shields.io/github/license/larymak/Python-project-Scripts
+[License-url]: https://www.gnu.org/licenses/gpl-3.0.en.html
 
 
 ## 'CAP'Stone Network Automation Project
