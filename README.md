@@ -18,16 +18,18 @@
     not need to be altered.
 
 ### 1) Objectives
-    ![](/CAP-Stone Newtork Diagram.png)
+
 
 ### 2) Network Topology
-    A visual diagram of the network topology can be found in the network_diagram.pdf file.
+    A visual diagram of the network topology can be found below (also in the [images](images) folder).
     
     The network consists of a core router that is connected to the Internet and four
     internal routers. Each of the internal routers is connected to a bridge, and each
     bridge has a host connected. By design this network has been built for expandability, but not
     for redundancy or for being highly available.
 
+![](images/CAP-StoneNetworkDiagram.png)
+    
 ### 2) Ansible Playbook
 #### - [Deploy Namespaces Play](net_playbook-namespace.yml)
 #### - Deploy Bridge Interfaces Play
