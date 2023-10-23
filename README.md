@@ -17,7 +17,10 @@
     to be dynamic. If the data file is updated, the 95% of the coding does
     not need to be altered.
 
-### 1) Network Topology
+### 1) Objectives
+    ![](/CAP-Stone Newtork Diagram.png)
+
+### 2) Network Topology
     A visual diagram of the network topology can be found in the network_diagram.pdf file.
     
     The network consists of a core router that is connected to the Internet and four
