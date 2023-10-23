@@ -18,7 +18,7 @@
     not need to be altered.
 
 ### 1) Objectives
-
+![](images/CAPStoneObjectives.png)
 
 ### 2) Network Topology
     A visual diagram of the network topology can be found below (also in the [images](images) folder).
