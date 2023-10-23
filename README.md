@@ -6,7 +6,6 @@
 [License-url]: https://www.gnu.org/licenses/gpl-3.0.en.html
 
 #### Primary Contributions by: [Diego Pineda](https://github.com/diegozpineda) and [Ryan McNair](https://github.com/blacwolf4)
-![](images/hyperbadge_diegpine_small.png) ![](images/hyperbadge_ryair_small.png) 
 
     This project was designed for and created as a practice to simulate a real-world scenario for building a network using 
     automation tools.
