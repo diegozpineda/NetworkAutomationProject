@@ -32,7 +32,7 @@ A visual diagram of the network topology can be found below (or in the [images d
     bridge has a host connected. By design this network has been built for expandability, but not
     for redundancy or for being highly available.
 
-![](images/CAP-StoneNetworkDesign.png)
+![](images/CAP-StoneNetworkDD.png)
     
 ### Ansible Playbook Code Files
 - [Data Structure File](net_datastructure-new3.yml)
